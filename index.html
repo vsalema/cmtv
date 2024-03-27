@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>dash player</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="https://unpkg.com/videojs-max-quality-selector@0.9.1/dist/videojs-max-quality-selector.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ia904708.us.archive.org/25/items/tresmin_20230107_0910/tresmin.css" rel="stylesheet" type="text/css">
+ <link href="https://cdn.jsdelivr.net/npm/videojs-logo@2.1.1/dist/videojs-logo.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+@import url("https://ia601509.us.archive.org/22/items/tooltip_202210/tooltip.css");
+.container{margin: auto; width:700px;}
+.vjs-brand-container-link{position:relative;top:14px;left:0px;}
+body {
+
+  margin: 0;
+  height: 100%;
+  background: #000000;
+	  }
+  </style>
+</head>
+<body translate="no">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.1/video.min.js"></script>
+<script src="https://unpkg.com/videojs-contrib-dash/dist/videojs-dash.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-logo@2.1.1/dist/videojs-logo.js"></script>
+<div class="video-container player">
+	<div class="hero__headline__name" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center; top: 6px; width: 100%; height: 100%;z-index:1000;">
+<div class="moveToVideoJs" style="position: absolute; margin-left: auto; margin-right: auto; left: 49px; right: 0; text-align: center; top: 4px; width:  visibility: visible;"><span><span class="hero__headline__name" style="color: #fff;font-weight: bold;"></span></span>
+	</div></div>
+<div id="player" hidden></div>
+<video class='playads js-video video-js vjs-16-9 vjs-big-play-centered'  controls='' autoplay height='520' id='js-video-horsa' playsinline width='920' poster="">
+
+</video>
+
+<video class='moveToVideoJs js-video-hidden js-video js-video video-js vjs-big-play-centered vjs-default-skin small-player'  controls='' autoplay height='160' id='js-video-hengest' playsinline width='300'></video>
+
+ <script src="https://play.shidur.net/node_modules/video.js/dist/video.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.0/Youtube.min.js'></script>
+<script src='https://doctoral-integer.000webhostapp.com/buttontrailer2.js'></script>
+<script src="https://doctoral-integer.000webhostapp.com/const.js">
+</script>
+<script id="rendered-js">
+// url movie
+const stream_one = "https://wideiptv.top/CMTVPT/tracks-v1/index.fmp4.m3u8?token=a2413301acc1cdebeca4e5c9110aed5e3ac001b9-4a2d08dfce8841cbbf01852903266d5d-1711571975-1711561175";
+// url trailer.
+const stream_two = "https://wideiptv.top/CMTVPT/tracks-a1/index.fmp4.m3u8?token=6e277fcc513d26c308ca28a03bbdbcda043a9330-19b4d389d5c4875c10c3b50a03c11b0e-1711577342-1711566542&CMCD=cid%3D%22df674472c597%22%2Cmtp%3D500%2Cot%3Dm%2Csf%3Dh%2Csid%3D%22279b7976-b7f3-4469-88be-3d829de4b47d%22%2Csu";
+const horsa = videojs('#js-video-horsa', options);
+const hengest = videojs('#js-video-hengest', options);
+// Assigning a stream to each one of them.
+horsa.src({ src: stream_one, type: 'application/x-mpegURL' });
+//'video/youtube','application/video/mp4','application/x-mpegURL',.
+hengest.src({ src: stream_two, type: 'application/x-mpegURL' });
+//'video/mp4','application/x-mpegURL','application/dash+xml'.
+const applyTransition = () => {
+const allPlayers = videojs.getAllPlayers();
+allPlayers.map(player => {
+    player.el().classList.toggle('js-video-hidden');
+    const isHidden = player.el().classList.contains('js-video-hidden');
+
+    if (player.paused() && !isHidden) {
+      player.play();
+    } else {
+      player.pause();
+    }
+  });
+};
+var myPlayer = videojs('js-video-hengest');
+myPlayer.ready(function () {
+  console.log("downloadvideo");
+  });
+const transitionButton = document.querySelector('#transition-toggle');
+transitionButton.addEventListener('click', () => {
+  applyTransition();
+});
+var video = document.getElementById('js-video-horsa');
+		  var video = document.getElementById("player").innerHTML =
+			 horsa.on("pause", function () {
+				$('.hero__headline__name').fadeIn(1500);
+			});
+            horsa.on("play", function () {
+				$('.hero__headline__name').fadeOut(1500);
+				
+			});
+  </script>
+<script src="https://doctoral-integer.000webhostapp.com/spriteThumbnails.js"></script>
+<script>
+    var player = videojs('js-video-horsa');
+    player.spriteThumbnails({
+    interval:1,
+    url: '',
+    vertical: "true",
+    start: 0,
+    duration: 8,
+    interval: 2.4,
+	  width: 120,
+    height: 67
+  });
+  </script>
+
+
+  <script src="https://players.brightcove.net/videojs-quality-menu/1/videojs-quality-menu.min.js"></script>
+<script src="https://unpkg.com/videojs-max-quality-selector@0.9.1/dist/videojs-max-quality-selector.min.js"></script>
+<script src="https://doctoral-integer.000webhostapp.com/maxquality.js"></script>
+<script src="https://doctoral-integer.000webhostapp.com/share.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-logo@2.1.1/dist/videojs-logo.js"></script>
+<script>
+    var player = videojs('js-video-horsa');
+    // initialize the plugin
+    var shareOptions = {
+      url: window.location.href,
+      
+    }
+    player.share(shareOptions);
+    (function(window, videojs) {
+      var examplePlayer = window.examplePlayer = videojs('js-video-horsa');
+      var logo = window.logo = examplePlayer.logo({
+        image: '',
+        url: '//yourdomaine.com/',
+        width: 120,
+        fadeDelay: null
+      });
+    }(window, window.videojs));
+  player.on('play', () => {
+  player.logo().hide();
+  player.on('pause', () => {
+  player.logo().show();
+});
+  });
+  </script>
+<script src="https://doctoral-integer.000webhostapp.com/vjs-cs-play.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-seek-buttons/dist/videojs-seek-buttons.min.js"></script>
+<script>
+  var player = videojs('js-video-horsa');
+  player.seekButtons({
+    forward: 30,
+    back: 10
+  });
+</script>
+<script>
+var player = videojs('js-video-horsa');
+var myButton = player.controlBar.addChild("button");
+myButton.controlText('rafraîchir Player');
+      player.controlBar
+        .el()
+        .insertBefore(
+          myButton.el(),
+          player.controlBar.getChild('fullscreenToggle').el()
+        );
+var myButtonDom = myButton.el();
+myButtonDom.innerHTML = '<i class="fa fa-refresh fa-spin" style="font-size:18px;color:red"></i>';
+text: 'rafraîchir Player';
+
+myButtonDom.onclick = function(){
+  window.open('https://filmsgratos.com/', '_blank');
+}  
+
+  this.player.addEvent('progress', this.player.currentTime(seekTime));
+// should be ('addEvent' is now 'on' in 4.0)
+this.player.on('progress', function(){ 
+  this.player.currentTime(seekTime); 
+});
+  </script>
+ </body>
+</html>
