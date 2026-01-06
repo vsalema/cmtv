@@ -162,10 +162,10 @@
     <script>
         // Configuration
         const config = {
-            streamUrl: "https://clouding.wideiptv.top/CMTVPT/index.fmp4.m3u8?token=866ee4107db7946bcf9b963ef44f4c48db907f50-3a06e7e82fc9f795abad92c0db663cc8-1767732971-1767729371",
+            streamUrl: "https://clouding.wideiptv.top/CMTVPT/index.fmp4.m3u8?token=c594c3653b6d9bd336184d1dc73a3d353939bd1e-05bac7c71892b97c9277d6e5bf460d33-1767736975-1767733375",
             channelSlug: "cmtv",
             tokenExpiresIn: 300, // seconds
-            currentToken: "866ee4107db7946bcf9b963ef44f4c48db907f50-3a06e7e82fc9f795abad92c0db663cc8-1767732971-1767729371"        };
+            currentToken: "c594c3653b6d9bd336184d1dc73a3d353939bd1e-05bac7c71892b97c9277d6e5bf460d33-1767736975-1767733375"        };
         
         let hls = null;
         let tokenRefreshTimer = null;
@@ -244,7 +244,7 @@
         
         async function refreshToken() {
             try {
-                const response = await fetch(`https://clouding.wideiptv.top/api/refresh_token.php`, {
+                const response = await fetch(`https://lovecdn.ru/api/refresh_token.php`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -305,4 +305,5 @@
 </body>
 
 </html>
+
 
