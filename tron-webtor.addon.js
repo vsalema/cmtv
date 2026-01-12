@@ -274,7 +274,10 @@
           try { if (typeof currentEntry !== 'undefined') currentEntry = entry; } catch {}
           try { if (typeof activePlaybackMode !== 'undefined') activePlaybackMode = 'iframe'; } catch {}
 
-          if (typeof iframeEl !== 'undefined' && iframeEl) iframeEl.src = webtorOverlayUrlFor(entry.url);
+          if (typeof iframeEl !== 'undefined' && iframeEl) {
+            iframeEl.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
+            iframeEl.src = webtorOverlayUrlFor(entry.url);
+          }
 
           if (typeof updateNowPlaying === 'function') updateNowPlaying(entry, 'WEBTOR');
           if (typeof setStatus === 'function') setStatus('Overlay Webtor actif');
@@ -305,7 +308,11 @@
     try { activePlaybackMode = 'iframe'; } catch {}
 
     if (typeof showIframe === 'function') showIframe();
-    if (typeof iframeEl !== 'undefined' && iframeEl) iframeEl.src = webtorOverlayUrlFor(it.url);
+    if (typeof iframeEl !== 'undefined' && iframeEl) {
+      // Ensure browser permissions for media inside the iframe
+      iframeEl.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
+      iframeEl.src = webtorOverlayUrlFor(it.url);
+    }
 
     if (typeof updateNowPlaying === 'function') updateNowPlaying(it, 'WEBTOR');
     if (typeof setStatus === 'function') setStatus('Lecture torrent (Webtor)');

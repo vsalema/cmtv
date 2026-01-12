@@ -60,6 +60,13 @@
     const playerHost = document.getElementById("playerHost");
     const statusEl = document.getElementById("status");
 
+    // Webtor (WebRTC) requires a secure context (HTTPS or http://localhost).
+    // In an iframe, ALL ancestor contexts must also be secure.
+    // If you open the app via file://, most browsers mark the context as NOT secure.
+    if (!window.isSecureContext) {
+      statusEl.textContent = "Webtor: contexte non sécurisé (ouvre via http://localhost ou https).";
+    }
+
     function setStatus(msg){
       statusEl.textContent = String(msg || "");
     }
@@ -86,6 +93,11 @@
     function boot(){
       const input = getSrc();
       resetPlayerHost();
+
+      if (!window.isSecureContext) {
+        // Keep the page visible, but avoid trying to start WebRTC.
+        return;
+      }
 
       if (!input) {
         setStatus("Webtor: aucun src= fourni.");
