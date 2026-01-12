@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Webtor Overlay</title>
+  <style>
+    :root { color-scheme: light dark; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    #root{
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+    #playerHost{
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #02050a 0, #000 65%);
+    }
+    #status{
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      z-index: 9999;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.55);
+      color: rgba(255,255,255,.9);
+      max-width: min(560px, calc(100vw - 20px));
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div id="playerHost"></div>
+  </div>
+  <div id="status">Webtor: prêt.</div>
+
+  <!-- SDK Webtor (version épinglée) -->
+  <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js@0.2.19/dist/index.min.js"
+          charset="utf-8" async></script>
+
+  <script>
+    const playerHost = document.getElementById("playerHost");
+    const statusEl = document.getElementById("status");
+
+    function setStatus(msg){
+      statusEl.textContent = String(msg || "");
+    }
+
+    function resetPlayerHost(){
+      playerHost.innerHTML = "";
+      const div = document.createElement("div");
+      div.id = "player";
+      div.className = "webtor";
+      playerHost.appendChild(div);
+    }
+
+    function isProbablyMagnetOrTorrentUrl(s){
+      const v = (s || "").trim();
+      return v.startsWith("magnet:?") || v.endsWith(".torrent") || v.startsWith("http://") || v.startsWith("https://");
+    }
+
+    function getSrc(){
+      const u = new URL(window.location.href);
+      const src = u.searchParams.get("src") || u.searchParams.get("magnet") || u.searchParams.get("torrentUrl") || "";
+      return (src || "").trim();
+    }
+
+    function boot(){
+      const input = getSrc();
+      resetPlayerHost();
+
+      if (!input) {
+        setStatus("Webtor: aucun src= fourni.");
+        return;
+      }
+      if (!isProbablyMagnetOrTorrentUrl(input)) {
+        setStatus("Webtor: src invalide (pas magnet/url .torrent).");
+        return;
+      }
+
+      setStatus("Webtor: initialisation…");
+
+      window.webtor = window.webtor || [];
+      window.webtor.push({
+        id: "player",
+        magnet: input.startsWith("magnet:?") ? input : undefined,
+        torrentUrl: input.startsWith("magnet:?") ? undefined : input,
+        width: "100%",
+        height: "100%",
+        controls: true,
+        on: function (e) {
+          try {
+            const name = e && e.name ? e.name : "EVENT";
+            if (name) setStatus("Webtor: " + name);
+          } catch (_) {}
+        }
+      });
+    }
+
+    boot();
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+/* Webtor torrents: UI additions only (does not override existing layout) */
+
+.tag-chip--torrent{
+  border-color: var(--tron-accent-soft);
+  color: var(--tron-accent-soft);
+}
+
+.torrent-empty{
+  text-align:center;
+  padding: 14px 10px;
+  color: var(--tron-muted);
+  font-size: 12px;
+}
+
