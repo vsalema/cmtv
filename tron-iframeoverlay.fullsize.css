@@ -1,0 +1,20 @@
+/* tron-iframeoverlay.fullsize.css */
+/* Force l'overlay iframe à occuper toute la zone player */
+
+.player-inner{
+  position: relative !important; /* référentiel pour l'overlay */
+}
+
+#iframeOverlay{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#iframeEl{
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
